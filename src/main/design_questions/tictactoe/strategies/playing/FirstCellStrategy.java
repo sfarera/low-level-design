@@ -5,15 +5,16 @@ import design_questions.tictactoe.models.BoardCell;
 
 import java.util.List;
 
-public class FirstCellStrategy implements PlayingStrategy{
-    private static final int FIRST_CELL=0;
+public class FirstCellStrategy implements PlayingStrategy {
+    private static final int FIRST_CELL = 0;
+
     @Override
     public BoardCell makeMove(Board board) {
         List<BoardCell> boardEmptyCells = board.getEmptyCells();
-        if (boardEmptyCells.isEmpty()){
+        if (boardEmptyCells.isEmpty()) {
             return null;
         }
-        return new BoardCell(boardEmptyCells.get(FIRST_CELL).getRow(),boardEmptyCells.get(FIRST_CELL).getColumn());
+        return new BoardCell(boardEmptyCells.get(FIRST_CELL).getRow(), boardEmptyCells.get(FIRST_CELL).getColumn());
 
     }
 }

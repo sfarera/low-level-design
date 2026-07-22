@@ -4,7 +4,6 @@ package design_questions.tictactoe.strategies.winning;
 import design_questions.tictactoe.models.Board;
 import design_questions.tictactoe.models.BoardCell;
 import design_questions.tictactoe.models.GameSymbol;
-import design_questions.tictactoe.models.Player;
 
 import java.util.List;
 
@@ -23,16 +22,16 @@ public class NDiagnolWinningStrategy implements WinningStrategy {
                 break;
             }
         }
-        if (isPrimaryWinner){
+        if (isPrimaryWinner) {
             return true;
         }
         boolean isSecondaryWinner = true;
-        for (int i =0; i< size; i++){
-            if (boardCells.get(i).get(size-1-i).getSymbol() != currentSymbol){
-                isSecondaryWinner=false;
+        for (int i = 0; i < size; i++) {
+            if (boardCells.get(i).get(size - 1 - i).getSymbol() != currentSymbol) {
+                isSecondaryWinner = false;
             }
         }
-        if (isSecondaryWinner){
+        if (isSecondaryWinner) {
             return true;
         }
 

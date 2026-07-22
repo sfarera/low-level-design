@@ -5,7 +5,7 @@ import design_questions.tictactoe.models.BoardCell;
 
 import java.util.List;
 
-public class RandomPlayingStrategy implements PlayingStrategy{
+public class RandomPlayingStrategy implements PlayingStrategy {
 
     @Override
     public BoardCell makeMove(Board board) {
@@ -15,7 +15,7 @@ public class RandomPlayingStrategy implements PlayingStrategy{
         List<BoardCell> emptyCells = board.getEmptyCells();
 
         // Generate a random index for cells
-         int randomIndex = (int) (Math.random()* emptyCells.size());
+        int randomIndex = (int) (Math.random() * emptyCells.size());
         BoardCell boardCell = emptyCells.get(randomIndex);
         // Return the random cell
         return new BoardCell(boardCell.getRow(), boardCell.getColumn());

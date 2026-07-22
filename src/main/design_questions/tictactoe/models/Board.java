@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -12,9 +11,9 @@ import java.util.stream.IntStream;
 @Getter
 public class Board {
     private int size;
-    private List<List<BoardCell>> cells  = new ArrayList<>();
+    private List<List<BoardCell>> cells = new ArrayList<>();
 
-    public Board (int size){
+    public Board(int size) {
         this.size = size;
         this.cells = initializeCells(size);
     }
@@ -28,30 +27,31 @@ public class Board {
         this.cells=rows;*/
 
 
-            List<List<BoardCell>> cells = new ArrayList<>();
-            IntStream.range(0, size).forEach(row -> {
-                List<BoardCell> rowCells = new ArrayList<>();
-                IntStream.range(0, size).forEach(column -> rowCells.add(new BoardCell(row, column)));
-                cells.add(rowCells);
-            });
-            return cells;
+        List<List<BoardCell>> cells = new ArrayList<>();
+        IntStream.range(0, size).forEach(row -> {
+            List<BoardCell> rowCells = new ArrayList<>();
+            IntStream.range(0, size).forEach(column -> rowCells.add(new BoardCell(row, column)));
+            cells.add(rowCells);
+        });
+        return cells;
 
 
     }
 
     public boolean isEmpty(int row, int column) {
-        BoardCell boardCell = getBoardCell(row,column);
+        BoardCell boardCell = getBoardCell(row, column);
         GameSymbol symbol = boardCell.getSymbol();
-        if (symbol==null){
+        if (symbol == null) {
             return true;
         }
-       return false;
+        return false;
 
     }
 
     public void update(BoardCell move) {
         getBoardCell(move.getRow(), move.getColumn()).setSymbol(move.getSymbol());
     }
+
     public void printBoard() {
         for (int i = 0; i < cells.size(); ++i) {
             for (int j = 0; j < cells.size(); ++j) {
@@ -66,16 +66,17 @@ public class Board {
             System.out.printf("\n");
         }
     }
+
     private BoardCell getBoardCell(int row, int column) {
-       return  cells.get(row).get(column);
+        return cells.get(row).get(column);
     }
 
     public List<BoardCell> getEmptyCells() {
         // iterate over the cells
         // Flatten the array
         // filter out the cells where symbol != null;
-        return cells.stream().flatMap(List :: stream)
-                .filter(cell -> cell.getSymbol()==null)
+        return cells.stream().flatMap(List::stream)
+                .filter(cell -> cell.getSymbol() == null)
                 .toList();
     }
 }
