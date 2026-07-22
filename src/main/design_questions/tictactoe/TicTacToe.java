@@ -1,7 +1,10 @@
 package design_questions.tictactoe;
 
+import design_questions.tictactoe.exceptions.InvalidStrategyException;
 import design_questions.tictactoe.exceptions.InvalidSymbolException;
 import design_questions.tictactoe.models.*;
+import design_questions.tictactoe.strategies.playing.FirstCellStrategy;
+import design_questions.tictactoe.strategies.playing.PlayingStrategy;
 import design_questions.tictactoe.strategies.playing.RandomPlayingStrategy;
 
 import java.util.Scanner;
@@ -53,7 +56,7 @@ public static Game createGame(HumanPlayer human){
                 .withPlayer(
                         Bot.builder()
                                 .symbol(getBotSymbol(human.getSymbol()))
-                                .playingStrategy(new RandomPlayingStrategy())
+                                .playingStrategy(playingStrategy)
                                 .level(GameLevel.EASY)
                                 .build()
                 )
@@ -67,7 +70,7 @@ public static Game createGame(HumanPlayer human){
         }
         return GameSymbol.O;
     }
-
+   public static PlayingStrategy playingStrategy = null;
     private static HumanPlayer getUserInput() {
         System.out.println("Welcome to TicTacToe");
         Scanner sc = new Scanner(System.in);
@@ -76,7 +79,6 @@ public static Game createGame(HumanPlayer human){
 
         System.out.println("Enter email");
         String email = sc.nextLine();
-
         System.out.println("Enter Symbol : X or O");
         GameSymbol symbol ;
         try {
@@ -84,8 +86,26 @@ public static Game createGame(HumanPlayer human){
         } catch (IllegalArgumentException e) {
             throw new InvalidSymbolException();
         }
+        System.out.println("Decide the playing strategy of bot");
+        System.out.println("1. Random Playing strategy");
+        System.out.println("2. First Cell strategy");
+        int choice = sc.nextInt();
+
+        playingStrategy = getPlayingStrategy(choice);
+
 
         User user = new User(name,email,null);
       return new HumanPlayer(symbol, user);
+    }
+
+    private static PlayingStrategy getPlayingStrategy(int choice) {
+
+        switch (choice){
+            case 1:
+                return new RandomPlayingStrategy();
+            case 2:
+                return new FirstCellStrategy();
+        }
+        throw new InvalidStrategyException();
     }
 }
