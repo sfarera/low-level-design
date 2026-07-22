@@ -1,7 +1,6 @@
 package design_questions.tictactoe.models;
 
 
-import lombok.Builder;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Scanner;
@@ -11,7 +10,6 @@ import java.util.Scanner;
 public class HumanPlayer extends Player {
 
     private User user;
-
 
 
     public HumanPlayer(GameSymbol symbol, User user) {

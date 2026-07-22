@@ -25,7 +25,7 @@ public class Game {
     private List<Player> players = new ArrayList<>();
     private GameStatus gameStatus;
     private int nextPlayerIndex = 0;
-    private List<WinningStrategy> listOfStrategies = List.of(new NRowsWinningStrategy(),new NColumnWinStrategy(), new NDiagnolWinningStrategy());
+    private List<WinningStrategy> listOfStrategies = List.of(new NRowsWinningStrategy(), new NColumnWinStrategy(), new NDiagnolWinningStrategy());
     private Player winner;
 
     private Game() {
@@ -101,12 +101,12 @@ public class Game {
     public boolean checkDraw(GameSymbol symbol) {
         // Task 4 : Implement the check draw method
         // if no cell empty and there is no winner
-        boolean drawStatus= false;
-       if (getBoard().getEmptyCells().isEmpty() &&  (!checkWinner(symbol))){
-           drawStatus=true;
-           return drawStatus;
-       }
-       return drawStatus;
+        boolean drawStatus = false;
+        if (getBoard().getEmptyCells().isEmpty() && (!checkWinner(symbol))) {
+            drawStatus = true;
+            return drawStatus;
+        }
+        return drawStatus;
     }
 
     public static Builder builder() {
