@@ -9,7 +9,7 @@ public class RandomPlayingStrategy implements PlayingStrategy{
 
     @Override
     public BoardCell makeMove(Board board) {
-        // Output -> A cell from the list of available cells
+        // Output -> A cel-strategyl from the list of available cells
 
         // Get a list of empty cells
         List<BoardCell> emptyCells = board.getEmptyCells();

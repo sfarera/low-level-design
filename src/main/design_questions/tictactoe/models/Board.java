@@ -40,7 +40,12 @@ public class Board {
     }
 
     public boolean isEmpty(int row, int column) {
-        return getBoardCell(row,column).getSymbol()==null;
+        BoardCell boardCell = getBoardCell(row,column);
+        GameSymbol symbol = boardCell.getSymbol();
+        if (symbol==null){
+            return true;
+        }
+       return false;
 
     }
 
